@@ -1,0 +1,89 @@
+View Main:
+  HStack:
+	VStack:
+	  Text:
+		Style: Body
+		Value: 'Состояние:'
+	  Text:
+		Style: Body
+		Source: 'status'
+	VStack:
+	  Button:
+		Type: Momentary
+		Title: "Заварить зеленый чай"
+		AltTitle: PRESS MEView Main:
+  - HStack:
+    - VStack:
+      - Text:
+          Style: Body
+          Value: 'Состояние:'
+      - Text:
+          Style: Body
+          Source: 'status'
+    - VStack:
+      - Button:
+          Type: Momentary
+          Title: "Заварить зеленый чай"
+          AltTitle: PRESS ME
+          Size: 200 40
+          Autosize: l r v
+          Action:
+            - tell /greentea
+      - Button:
+          Type: Momentary
+          Title: "Заварить черный чай"
+          Size: 200 40
+          Autosize: l r v
+          Action:
+            - tell /blacktea
+      - Button:
+          Type: Momentary
+          Title: "Налить кипяток"
+          Size: 200 40
+          Autosize: l r v
+          Action:
+            - tell /hotwater
+		Size: 100 40
+		Autosize: l r v
+		Action:
+		  - tell /greentea
+		#   - log 'Green Tea!'
+		#   - show 'Second'
+	  Button:
+		Type: Momentary
+		Title: "Заварить черный чай"
+		Size: 100 40
+		Autosize: l r v
+		Action:
+		  - tell /blacktea
+	  Button:
+		Type: Momentary
+		Title: "Налить кипяток"
+		Size: 100 40
+		Autosize: l r v
+		Action:
+		  - tell /hotwater
+
+	  # ProgressBar:
+	  #   Type: Horizontal
+	  #   DefaultValue: 40
+	  #   Range: 0, 100
+	  #   Step: 0.1
+	  #   Source: '/feeds/Slider1'
+	  #   Dimensions: 0 0 100 35
+	  #   Autosize: h v
+
+
+# View Second:
+#   Image:
+#     Frame: none
+#     Source: icon 'Leaf'
+#     Tint: #00FFA0
+#     Autosize: h v
+
+# View Third:
+#   Text:
+#     Source: '/feeds/Log'
+#     DefaultValue: 'This is a text.'
+#     Accumulate: YES
+#     Style: Monospace

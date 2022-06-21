@@ -26,7 +26,7 @@ class GadgetIcon(QWidget):
         if self.marks:
             rect = QRect(0,0,painter.device().width(), painter.device().height())
             painter.drawPixmap(rect, self.track_marks)
-        rect = QRect(13, 13, 32, 32)
+        rect = QRect((painter.device().width() - 48) / 2, 10, 48, 48)
         painter.drawPixmap(rect, self.icon)
 
     def showMarks(self, val):
@@ -40,17 +40,18 @@ class MapElement(QWidget):
     icon_file = ""
     isTracked = False
     tint_color = QColor("White")
+    uuid = ""
 
-    clicked = Signal()
+    clicked = Signal(object)
 
-    def __init__(self, name = "", tags = [], icon_file="mcu.png", isTracked = False):
+    def __init__(self, name = "", tags = [], icon_file="mcu.png", isTracked = False, uuid=""):
         super().__init__()
 
         self.setSizePolicy(
             QSizePolicy.MinimumExpanding,
             QSizePolicy.MinimumExpanding
         )
-
+        self.uuid = uuid
         self.name = name
         self.tags = tags
         self.icon_file = icon_file
@@ -68,7 +69,7 @@ class MapElement(QWidget):
         self.sublbl.setAlignment(Qt.AlignCenter)
         self.sublbl.setFont(QFont('PT Sans', 10))
 
-        self.setFixedSize(QSize(70,100))
+        self.setFixedSize(QSize(90,120))
 
         l = QVBoxLayout()
         l.addWidget(self.icon)
@@ -90,15 +91,15 @@ class MapElement(QWidget):
 
 
     def mousePressEvent(self, e):
-        self.clicked.emit()
+        self.clicked.emit(self.uuid)
         
 
-if __name__ == '__main__':
-    import sys
+# if __name__ == '__main__':
+#     import sys
     
-    app = QApplication(sys.argv)
+#     app = QApplication(sys.argv)
 
-    widget = MapElement(name="Lamp", tags=["Kitchen", "RGB"], icon_file="lamp.png", isTracked=True)
-    widget.show()
+#     widget = MapElement(name="Lamp", tags=["Kitchen", "RGB"], icon_file="lamp.png", isTracked=True)
+#     widget.show()
 
-    app.exec_()
+#     app.exec_()
